@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---- TezDial design tokens ---- */
+@theme {
+  --color-ink: #16130f;
+  --color-ink-soft: #221d16;
+  --color-paper: #f6f1e7;
+  --color-mist: #ece4d3;
+  --color-tez-orange: #ff4e1f;
+  --color-tez-orange-dim: #d9430f;
+  --color-tez-gold: #ffb703;
+  --color-tez-forest: #1f4b3f;
+  --color-tez-yellow: #FFCC00;
+
+  --font-display: var(--font-bricolage), "Segoe UI", sans-serif;
+  --font-body: var(--font-inter), "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), "Courier New", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Speed-line signature motif — used as section dividers */
+.tez-speedline {
+  position: relative;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-tez-orange) 15%,
+    var(--color-tez-orange) 55%,
+    transparent 100%
+  );
+  transform: skewX(-12deg);
+}
+
+/* Marquee for category chip strip */
+@keyframes tez-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.tez-marquee-track {
+  animation: tez-marquee 32s linear infinite;
+}
+
+.tez-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tez-marquee-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

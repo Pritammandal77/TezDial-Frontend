@@ -1,0 +1,56 @@
+const PERKS = [
+  "Free basic listing, always",
+  "Verified badge builds customer trust",
+  "Show up in local search results",
+];
+
+export default function CTA() {
+  return (
+    <section id="for-business" className="px-6 lg:px-12 py-20 lg:py-28">
+      <div className="relative bg-tez-orange rounded-3xl px-8 py-14 lg:px-16 lg:py-16 overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-15"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(-12deg, #16130F 0px, #16130F 1px, transparent 1px, transparent 48px)",
+          }}
+        />
+        <div className="relative grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
+          <div>
+            <h2 className="font-display font-extrabold text-4xl lg:text-5xl tracking-tight text-ink">
+              Grow your business with TezDial.
+            </h2>
+            <ul className="mt-6 space-y-2">
+              {PERKS.map((p) => (
+                <li
+                  key={p}
+                  className="flex items-center gap-2 text-ink/80 font-medium text-sm"
+                >
+                  <CheckIcon />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex lg:justify-end">
+            <a
+              href="mailto:hello@tezdial.in?subject=List%20my%20business%20on%20TezDial"
+              className="inline-flex items-center justify-center gap-2 bg-ink text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-paper hover:text-ink transition-colors"
+            >
+              List Your Business — It's Free
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="shrink-0 text-ink">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
