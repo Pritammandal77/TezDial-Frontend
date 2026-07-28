@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#hero" },
-  { label: "Categories", href: "#categories" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Businesses", href: "#businesses" },
-  { label: "For Business", href: "#for-business" },
+  { label: "Home", href: "/" },
+  { label: "Categories", href: "/#categories" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Businesses", href: "/#businesses" },
+  { label: "For Business", href: "/#for-business" },
 ];
 
 export default function Header() {
@@ -58,6 +58,12 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+
+            <Link href="/business/all"
+              className="hover:text-tez-orange transition-colors"
+            >
+              Explore
+            </Link>
           </nav>
 
           <div className="hidden md:block">

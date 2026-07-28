@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const PERKS = [
   "Free basic listing, always",
   "Verified badge builds customer trust",
@@ -34,12 +36,12 @@ export default function CTA() {
             </ul>
           </div>
           <div className="flex lg:justify-end">
-            <a
-              href="mailto:hello@tezdial.in?subject=List%20my%20business%20on%20TezDial"
+            <Link
+              href="/business/new"
               className="inline-flex items-center justify-center gap-2 bg-ink text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-paper hover:text-ink transition-colors"
             >
               List Your Business — It's Free
-            </a>
+            </Link>
           </div>
         </div>
       </div>

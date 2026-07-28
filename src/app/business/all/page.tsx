@@ -46,7 +46,7 @@ export default function ExplorePage() {
           {
             params,
             signal: controller.signal,
-          }
+          },
         );
 
         setBusinesses(res.data.businesses || []);
@@ -56,15 +56,13 @@ export default function ExplorePage() {
         if (axios.isCancel(err)) return;
 
         if (err instanceof AxiosError) {
-          setError(
-            err.response?.data?.message || "Failed to load businesses."
-          );
+          setError(err.response?.data?.message || "Failed to load businesses.");
         } else if (err instanceof Error) {
           setError(err.message);
         } else {
           setError("An unexpected error occurred.");
         }
-      } finally{
+      } finally {
         setLoading(false);
       }
     }
@@ -80,8 +78,14 @@ export default function ExplorePage() {
       <div className="max-w-6xl mx-auto">
         <HeroSlider />
 
+        {/* Filters */}
+        <div className="mt-10 space-y-8">
+          <CategoryStrip active={category} onSelect={setCategory} />
+          <CityStrip active={city} onSelect={setCity} />
+        </div>
+
         {/* Search bar */}
-        <div className="mt-8 bg-ink rounded-2xl p-2.5 flex items-center gap-2 max-w-xl">
+        <div className="mt-8 bg-ink rounded-2xl p-2.5 flex items-center gap-2">
           <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-xl bg-paper/10">
             <SearchIcon />
             <input
@@ -99,12 +103,6 @@ export default function ExplorePage() {
               Clear
             </button>
           )}
-        </div>
-
-        {/* Filters */}
-        <div className="mt-10 space-y-8">
-          <CategoryStrip active={category} onSelect={setCategory} />
-          <CityStrip active={city} onSelect={setCity} />
         </div>
 
         {/* Results header */}
