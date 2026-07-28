@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -60,12 +61,11 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:block">
-            <a
-              href="#for-business"
+            <Link href="/business/new"
               className="inline-flex items-center gap-2 bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-tez-orange transition-colors"
             >
               List Your Business
-            </a>
+            </Link>
           </div>
 
           <button
@@ -90,13 +90,13 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#for-business"
+            <Link
+              href="/business/new"
               className="mt-3 inline-flex justify-center items-center gap-2 bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-semibold"
               onClick={() => setMenuOpen(false)}
             >
               List Your Business
-            </a>
+            </Link>
           </nav>
         )}
       </header>
