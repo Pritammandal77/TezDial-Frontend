@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronLeft, ChevronLeftCircleIcon, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 export const CATEGORIES = [
@@ -49,14 +50,14 @@ export default function CategoryStrip({
             aria-label="Scroll left"
             className="p-1.5 rounded-full bg-mist/60 hover:bg-mist text-ink/70 hover:text-ink transition-colors"
           >
-            <ChevronLeftIcon />
+            <ChevronLeft size={20}/>
           </button>
           <button
             onClick={() => scroll("right")}
             aria-label="Scroll right"
             className="p-1.5 rounded-full bg-mist/60 hover:bg-mist text-ink/70 hover:text-ink transition-colors"
           >
-            <ChevronRightIcon />
+            <ChevronRight size={20}/>
           </button>
         </div>
       </div>
@@ -121,39 +122,5 @@ function FilterBox({
         {label}
       </span>
     </button>
-  );
-}
-
-function ChevronLeftIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m15 18-6-6 6-6" />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m9 18 6-6-6-6" />
-    </svg>
   );
 }

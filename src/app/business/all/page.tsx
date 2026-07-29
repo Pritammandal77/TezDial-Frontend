@@ -9,6 +9,7 @@ import CityStrip from "@/components/explore/CityStrip";
 import BusinessCard from "@/components/explore/BusinessCard";
 import { axiosInstance } from "@/lib/axiosInstance";
 import { Business, BusinessListResponse } from "@/lib/config";
+import { Search } from "lucide-react";
 
 function BusinessAllContent() {
   const searchParams = useSearchParams();
@@ -108,7 +109,7 @@ function BusinessAllContent() {
         {/* Search bar */}
         <div className="mt-8 bg-ink rounded-2xl p-2.5 flex items-center gap-2"  id="listings">
           <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-xl bg-paper/10">
-            <SearchIcon />
+            <Search size={20} className="text-gray-400"/>
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}

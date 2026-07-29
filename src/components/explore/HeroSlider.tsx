@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 
 const SLIDES = [
@@ -89,14 +90,14 @@ export default function HeroSlider() {
         aria-label="Previous slide"
         className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-paper/90 text-ink flex items-center justify-center hover:bg-tez-orange hover:text-paper transition-colors"
       >
-        <ChevronIcon direction="left" />
+        <ChevronLeft size={20}/>
       </button>
       <button
         onClick={next}
         aria-label="Next slide"
         className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-paper/90 text-ink flex items-center justify-center hover:bg-tez-orange hover:text-paper transition-colors"
       >
-        <ChevronIcon direction="right" />
+        <ChevronRight size={20}/>
       </button>
 
       {/* Dots */}
