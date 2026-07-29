@@ -1,4 +1,5 @@
 import { Business } from "@/lib/config";
+import { useRouter } from "next/navigation";
 
 export default function BusinessCard({ business }: { business: Business }) {
   const image =
@@ -6,8 +7,16 @@ export default function BusinessCard({ business }: { business: Business }) {
     business.imageBusiness2 ||
     `https://picsum.photos/seed/${business._id}/500/350`;
 
+  const router = useRouter();
+  const handleRedirectToDetialsPage = (id: string) => {
+    router.push(`/business/${id}`);
+  };
+
   return (
-    <div className="bg-paper rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div
+      className="bg-paper rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all"
+      onClick={() => handleRedirectToDetialsPage(business._id)}
+    >
       <div className="relative h-40 sm:h-48">
         <img
           src={image}
@@ -34,9 +43,7 @@ export default function BusinessCard({ business }: { business: Business }) {
         </p>
 
         <div className="mt-4 flex items-center justify-between pt-4 border-t border-ink/10">
-          <span className="font-mono text-xs text-ink/50">
-            {business.city}
-          </span>
+          <span className="font-mono text-xs text-ink/50">{business.city}</span>
           <div className="flex items-center gap-2">
             <a
               href={`tel:${business.phone}`}

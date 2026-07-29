@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -37,29 +38,14 @@ export default function RootLayout({
       <body
         className={`${bricolage.variable} ${inter.variable} ${plexMono.variable} antialiased`}
       >
-        <Header/>
+        <Header />
         {children}
-        <Footer/>
+        <Toaster position="top-center" richColors closeButton />
+        <Footer />
       </body>
     </html>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // old default code
 

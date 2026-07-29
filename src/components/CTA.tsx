@@ -9,7 +9,7 @@ const PERKS = [
 export default function CTA() {
   return (
     <section id="for-business" className="px-6 lg:px-12 py-20 lg:py-28">
-      <div className="relative bg-tez-orange rounded-3xl px-8 py-14 lg:px-16 lg:py-16 overflow-hidden">
+      <div className="relative bg-tez-yellow rounded-3xl px-8 py-14 lg:px-16 lg:py-16 overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-15"

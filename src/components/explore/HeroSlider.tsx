@@ -46,7 +46,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative h-[380px] sm:h-[440px] lg:h-[520px] overflow-hidden rounded-3xl">
+    <section className="relative h-95 sm:h-110 lg:h-130 overflow-hidden rounded-3xl">
       {SLIDES.map((slide, i) => (
         <div
           key={slide.title}
@@ -60,7 +60,7 @@ export default function HeroSlider() {
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10" />
+          <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-ink/10" />
           <div
             aria-hidden
             className="absolute inset-0 opacity-20"
