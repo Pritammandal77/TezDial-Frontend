@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { Phone, Menu, X, PlusCircle, Compass } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -9,6 +11,33 @@ const NAV_LINKS = [
   { label: "How It Works", href: "/#how-it-works" },
   { label: "For Business", href: "/#for-business" },
 ];
+
+const menuVariants: Variants = {
+  closed: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut",
+      when: "afterChildren",
+    },
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.25,
+      ease: "easeOut",
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  closed: { opacity: 0, y: -8 },
+  open: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+};
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,34 +48,28 @@ export default function Header() {
       <div className="hidden sm:flex items-center justify-between bg-ink text-mist/80 px-6 lg:px-12 py-2 font-mono text-xs tracking-wide">
         <div className="flex items-center gap-6">
           <a
-            href="tel:+919876543210"
+            href="tel:+919881228004"
             className="flex items-center gap-2 hover:text-tez-gold transition-colors"
           >
-            <PhoneIcon />
+            <Phone className="w-3.5 h-3.5 text-tez-orange" />
             +91 98812 28004
           </a>
-          {/* <a
-            href="mailto:hello@tezdial.in"
-            className="flex items-center gap-2 hover:text-tez-gold transition-colors"
-          >
-            <MailIcon />
-            hello@tezdial.in
-          </a> */}
         </div>
         <span className="text-mist/50">
           Chandrapur, Maharashtra &middot; Serving 48 cities
         </span>
       </div>
 
-      {/* Main nav */}
-      <header className="bg-paper/95 backdrop-blur border-b border-ink/10">
+      {/* Main nav container needs relative for the absolute dropdown */}
+      <header className="relative bg-paper/95 backdrop-blur border-b border-ink/10">
         <div className="flex items-center justify-between px-6 lg:px-12 py-4">
-          <a href="#hero" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="font-display font-extrabold text-2xl tracking-tight text-ink">
               Tez<span className="text-tez-orange">Dial</span>
             </span>
-          </a>
+          </Link>
 
+          {/* Desktop Links */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-ink/80">
             {NAV_LINKS.map((link) => (
               <a
@@ -58,86 +81,94 @@ export default function Header() {
               </a>
             ))}
 
-            <Link href="/business/all"
-              className="hover:text-tez-orange transition-colors"
+            <Link
+              href="/business/all"
+              className="flex items-center gap-1.5 hover:text-tez-orange transition-colors"
             >
+              <Compass className="w-4 h-4 text-tez-orange" />
               Explore
             </Link>
           </nav>
 
           <div className="hidden md:block">
-            <Link href="/business/new"
+            <Link
+              href="/business/new"
               className="inline-flex items-center gap-2 bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-tez-orange transition-colors"
             >
+              <PlusCircle className="w-4 h-4" />
               List Your Business
             </Link>
           </div>
 
+          {/* Animated Hamburger Toggle */}
           <button
-            className="md:hidden text-ink"
+            className="md:hidden p-2 text-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tez-orange/40"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            <MenuIcon open={menuOpen} />
+            <motion.div
+              animate={{ rotate: menuOpen ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {menuOpen ? (
+                <X className="w-6 h-6 text-tez-orange" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </motion.div>
           </button>
         </div>
 
-        {menuOpen && (
-          <nav className="md:hidden flex flex-col gap-1 px-6 pb-5 font-medium text-sm text-ink/80">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="py-2 border-b border-ink/10 last:border-0"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Link
-              href="/business/new"
-              className="mt-3 inline-flex justify-center items-center gap-2 bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-semibold"
-              onClick={() => setMenuOpen(false)}
+        {/* Floating Mobile Navigation Overlay */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="absolute top-full left-0 right-0 md:hidden bg-paper/98 backdrop-blur-md border-b border-ink/10 px-6 py-4 font-medium text-sm text-ink/80 shadow-xl"
             >
-              List Your Business
-            </Link>
-          </nav>
-        )}
+              <div className="space-y-1">
+                {NAV_LINKS.map((link) => (
+                  <motion.div key={link.href} variants={itemVariants}>
+                    <a
+                      href={link.href}
+                      className="block py-2.5 border-b border-ink/5 hover:text-tez-orange transition-colors"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  </motion.div>
+                ))}
+
+                <motion.div variants={itemVariants}>
+                  <Link
+                    href="/business/all"
+                    className="flex items-center gap-2 py-2.5 border-b border-ink/5 hover:text-tez-orange transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Compass className="w-4 h-4 text-tez-orange" />
+                    Explore
+                  </Link>
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="pt-3 pb-2">
+                  <Link
+                    href="/business/new"
+                    className="w-full inline-flex justify-center items-center gap-2 bg-ink text-paper px-5 py-3 rounded-xl text-sm font-semibold hover:bg-tez-orange transition-colors shadow-sm"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <PlusCircle className="w-4 h-4" />
+                    List Your Business
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
     </div>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 4h16v16H4z" opacity="0" />
-      <path d="M22 6 12 13 2 6" />
-      <path d="M2 6h20v12H2z" />
-    </svg>
-  );
-}
-
-function MenuIcon({ open }: { open: boolean }) {
-  if (open) {
-    return (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 6 6 18M6 6l12 12" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 12h18M3 6h18M3 18h18" />
-    </svg>
   );
 }

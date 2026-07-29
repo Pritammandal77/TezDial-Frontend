@@ -165,7 +165,7 @@ export default function ListBusinessPage() {
 
       const response = await axiosInstance.post("/api/business/new", formData);
       toast.success("Business Listed sucessfully")
-      
+
       setStatus({
         type: "success",
         message:
@@ -318,7 +318,7 @@ export default function ListBusinessPage() {
 
           <div className="grid sm:grid-cols-2 gap-6">
             <Field
-              label="Security PIN"
+              label="Security PIN (used to manage listing)"
               error={errors.pin}
               hint="4-6 digits, used to manage your listing later"
             >
@@ -334,7 +334,7 @@ export default function ListBusinessPage() {
               />
             </Field>
 
-            <Field label="Starting Rating" error={errors.rating}>
+            <Field label="Rate your business (0-5)" error={errors.rating}>
               <input
                 name="rating"
                 type="number"

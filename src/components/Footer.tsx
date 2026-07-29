@@ -67,7 +67,7 @@ export default function Footer() {
             {POPULAR_CATEGORIES.map((c) => (
               <li key={c}>
                 <a
-                  href="#categories"
+                  href="/business/all/#listings"
                   className="hover:text-tez-orange transition-colors"
                 >
                   {c}
