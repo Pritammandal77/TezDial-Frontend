@@ -444,7 +444,7 @@ function ImageInput({
   }, [file]);
 
   return (
-    <label className="relative flex flex-col items-center justify-center gap-2 bg-mist/40 border border-dashed border-ink/20 rounded-xl overflow-hidden cursor-pointer hover:border-tez-orange transition-colors text-center group min-h-[140px]">
+    <label className="relative flex flex-col items-center justify-center gap-2 bg-mist/40 border border-dashed border-ink/20 rounded-xl overflow-hidden cursor-pointer hover:border-tez-orange transition-colors text-center group min-h-35">
       <input
         type="file"
         accept="image/jpeg,image/png,image/webp"

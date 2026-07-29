@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const PERKS = [
   "Free basic listing, always",
@@ -6,10 +9,29 @@ const PERKS = [
   "Show up in local search results",
 ];
 
+const listVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -15 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+};
+
 export default function CTA() {
   return (
-    <section id="for-business" className="px-6 lg:px-12 py-20 lg:py-28">
-      <div className="relative bg-tez-yellow rounded-3xl px-8 py-14 lg:px-16 lg:py-16 overflow-hidden">
+    <section id="for-business" className="px-6 lg:px-12 py-20 lg:py-28 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.97, y: 20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: false, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative bg-tez-yellow rounded-3xl px-8 py-14 lg:px-16 lg:py-16 overflow-hidden"
+      >
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-15"
@@ -23,28 +45,37 @@ export default function CTA() {
             <h2 className="font-display font-extrabold text-4xl lg:text-5xl tracking-tight text-ink">
               Grow your business with TezDial.
             </h2>
-            <ul className="mt-6 space-y-2">
+            <motion.ul
+              variants={listVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false }}
+              className="mt-6 space-y-2"
+            >
               {PERKS.map((p) => (
-                <li
+                <motion.li
                   key={p}
+                  variants={itemVariants}
                   className="flex items-center gap-2 text-ink/80 font-medium text-sm"
                 >
                   <CheckIcon />
                   {p}
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
           <div className="flex lg:justify-end">
-            <Link
-              href="/business/new"
-              className="inline-flex items-center justify-center gap-2 bg-ink text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-paper hover:text-ink transition-colors"
-            >
-              List Your Business — It's Free
-            </Link>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href="/business/new"
+                className="inline-flex items-center justify-center gap-2 bg-ink text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-paper hover:text-ink transition-colors shadow-lg"
+              >
+                List Your Business — It's Free
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

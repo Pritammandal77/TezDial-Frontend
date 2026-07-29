@@ -67,3 +67,27 @@ body {
     scroll-behavior: auto;
   }
 }
+
+
+
+@keyframes tez-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.tez-marquee-track {
+  animation: tez-marquee 32s linear infinite;
+}
+
+.tez-marquee-track-reverse {
+  animation: tez-marquee-reverse 38s linear infinite;
+}
+
+.tez-marquee-track:hover,
+.tez-marquee-track-reverse:hover {
+  animation-play-state: paused;
+}
