@@ -31,7 +31,7 @@ const statVariants: Variants = {
 
 export default function Stats() {
   return (
-    <section className="bg-ink text-paper px-6 lg:px-12 py-16 lg:py-20 overflow-hidden">
+    <section className="bg-stats-bg text-paper px-6 lg:px-12 py-16 lg:py-20 overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"

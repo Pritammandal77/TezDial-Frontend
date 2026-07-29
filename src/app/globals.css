@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
-/* ---- TezDial design tokens ---- */
-@theme {
+
+
+/* ---- TezDial old design tokens ---- */
+/* @theme {
   --color-ink: #16130f;
   --color-ink-soft: #221d16;
   --color-paper: #f6f1e7;
@@ -10,7 +12,41 @@
   --color-tez-orange-dim: #d9430f;
   --color-tez-gold: #ffb703;
   --color-tez-forest: #1f4b3f;
+
   --color-tez-yellow: #FFCC00;
+  --color-top-bar-color : #16130f;
+  --color-buttons : #16130f;
+  --color-sec-texts : #ff4e1f;
+  --color-stats-bg : #16130f;
+  
+
+  --font-display: var(--font-bricolage), "Segoe UI", sans-serif;
+  --font-body: var(--font-inter), "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), "Courier New", monospace;
+} */
+
+ 
+/* New theme */
+@theme {
+
+  --color-tez-forest: #00403D;
+  --color-ink-soft: #002B29;
+
+   --color-tez-yellow: #FFCC00;
+  --color-top-bar-color : #00403D;
+  --color-buttons : #00403D;
+  --color-sec-texts : #00403D;
+  --color-CTA-btn : #00403D;
+  --color-stats-bg : #00403D;
+
+  --color-tez-orange: #FFCC00;
+  --color-tez-gold: #E6B800;
+
+  --color-ink: #16130F;
+  --color-paper: #FFFFFF;
+  --color-mist: #ECE4D3;
+
+  --color-tez-orange-dim: #D9383A;
 
   --font-display: var(--font-bricolage), "Segoe UI", sans-serif;
   --font-body: var(--font-inter), "Segoe UI", sans-serif;
@@ -31,13 +67,11 @@ body {
 .tez-speedline {
   position: relative;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--color-tez-orange) 15%,
-    var(--color-tez-orange) 55%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--color-tez-orange) 15%,
+      var(--color-tez-orange) 55%,
+      transparent 100%);
   transform: skewX(-12deg);
 }
 
@@ -46,6 +80,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -63,6 +98,7 @@ body {
   .tez-marquee-track {
     animation: none;
   }
+
   html {
     scroll-behavior: auto;
   }
@@ -74,6 +110,7 @@ body {
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }

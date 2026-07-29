@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <div className="sticky top-0 z-50">
       {/* Top utility bar */}
-      <div className="hidden sm:flex items-center justify-between bg-ink text-mist/80 px-6 lg:px-12 py-2 font-mono text-xs tracking-wide">
+      <div className="hidden sm:flex items-center justify-between bg-top-bar-color text-mist/80 px-6 lg:px-12 py-2 font-mono text-xs tracking-wide">
         <div className="flex items-center gap-6">
           <a
             href="tel:+919881228004"
@@ -93,7 +93,7 @@ export default function Header() {
           <div className="hidden md:block">
             <Link
               href="/business/new"
-              className="inline-flex items-center gap-2 bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-tez-orange transition-colors"
+              className="inline-flex items-center gap-2 bg-buttons text-paper px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-tez-orange transition-colors"
             >
               <PlusCircle className="w-4 h-4" />
               List Your Business
@@ -157,7 +157,7 @@ export default function Header() {
                 <motion.div variants={itemVariants} className="pt-3 pb-2">
                   <Link
                     href="/business/new"
-                    className="w-full inline-flex justify-center items-center gap-2 bg-ink text-paper px-5 py-3 rounded-xl text-sm font-semibold hover:bg-tez-orange transition-colors shadow-sm"
+                    className="w-full inline-flex justify-center items-center gap-2 bg-buttons text-paper px-5 py-3 rounded-xl text-sm font-semibold hover:bg-tez-orange transition-colors shadow-sm"
                     onClick={() => setMenuOpen(false)}
                   >
                     <PlusCircle className="w-4 h-4" />

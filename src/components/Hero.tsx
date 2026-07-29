@@ -142,7 +142,7 @@ export default function Hero() {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-tez-orange text-paper font-semibold text-sm px-7 py-3 rounded-xl hover:bg-tez-orange-dim transition-colors cursor-pointer"
+              className="bg-buttons text-paper font-semibold text-sm px-7 py-3 rounded-xl hover:bg-tez-orange-dim transition-colors cursor-pointer"
             >
               Search Now
             </motion.button>
@@ -285,6 +285,7 @@ function BusinessCardMock({
     </motion.div>
   );
 }
+
 
 
 

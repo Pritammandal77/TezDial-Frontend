@@ -156,7 +156,7 @@ function BusinessDetailPage() {
             <div className="mt-6 flex flex-col gap-2.5">
               <a
                 href={`tel:${businessData.phone}`}
-                className="inline-flex items-center justify-center gap-2 bg-ink text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-tez-orange transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-buttons text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-tez-orange transition-colors"
               >
                 <PhoneIcon />
                 Call {businessData.phone}

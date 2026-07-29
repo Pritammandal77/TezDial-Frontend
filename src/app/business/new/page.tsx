@@ -194,17 +194,16 @@ export default function ListBusinessPage() {
   }
 
   return (
-    <main className="min-h-screen bg-paper px-6 lg:px-12 py-16 lg:py-24">
-      <div className="max-w-2xl mx-auto">
-        <p className="font-mono text-xs tracking-[0.2em] text-tez-orange uppercase mb-4">
+    <main className="min-h-screen bg-paper px-6 lg:px-12 py-16 lg:py-14">
+      <div className="max-w-2xl mx-auto ">
+        <p className="font-mono text-xs tracking-[0.2em] text-sec-texts uppercase mb-4">
           For Business
         </p>
         <h1 className="font-display font-extrabold text-4xl lg:text-5xl tracking-tight text-ink">
           List your business on TezDial.
         </h1>
         <p className="mt-4 text-ink/60 max-w-lg">
-          Fill in the details below. Your listing goes live after a quick
-          verification — usually within a few hours.
+          Fill in the details below. Your listing goes live — within a few mniues.
         </p>
 
         {status && (
@@ -375,7 +374,7 @@ export default function ListBusinessPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-ink text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-tez-orange transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-buttons text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-tez-orange transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitting ? "Submitting..." : "List My Business"}
           </button>
