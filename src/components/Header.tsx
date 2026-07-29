@@ -5,9 +5,8 @@ import { useState } from "react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Categories", href: "/#categories" },
+  { label: "Categories", href: "/business/all/#categories" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Businesses", href: "/#businesses" },
   { label: "For Business", href: "/#for-business" },
 ];
 
@@ -24,15 +23,15 @@ export default function Header() {
             className="flex items-center gap-2 hover:text-tez-gold transition-colors"
           >
             <PhoneIcon />
-            +91 98765 43210
+            +91 98812 28004
           </a>
-          <a
+          {/* <a
             href="mailto:hello@tezdial.in"
             className="flex items-center gap-2 hover:text-tez-gold transition-colors"
           >
             <MailIcon />
             hello@tezdial.in
-          </a>
+          </a> */}
         </div>
         <span className="text-mist/50">
           Chandrapur, Maharashtra &middot; Serving 48 cities

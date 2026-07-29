@@ -122,7 +122,7 @@ export default function Hero() {
         </div>
 
         {/* Right visual mockup */}
-        <div className="hidden lg:block relative h-[420px]">
+        <div className="hidden lg:block relative h-105">
           <BusinessCardMock
             className="absolute top-0 right-6 rotate-[4deg]"
             name="Sharma Electricals"
@@ -131,14 +131,14 @@ export default function Hero() {
             city="Nagpur"
           />
           <BusinessCardMock
-            className="absolute top-28 right-24 -rotate-[6deg]"
+            className="absolute top-28 right-24 -rotate-6"
             name="Glow & Grace Salon"
             category="Salon & Spa"
             rating="4.7"
             city="Pune"
           />
           <BusinessCardMock
-            className="absolute top-56 right-0 rotate-[2deg]"
+            className="absolute top-56 right-0 rotate-2"
             name="City Care Clinic"
             category="Healthcare"
             rating="4.9"

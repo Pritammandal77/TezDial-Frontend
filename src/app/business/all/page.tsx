@@ -100,7 +100,7 @@ function BusinessAllContent() {
         <HeroSlider />
 
         {/* Category & City Filters */}
-        <div className="mt-10 space-y-8">
+        <div className="mt-10 space-y-8" id="categories">
           <CategoryStrip active={category} onSelect={setCategory} />
           <CityStrip active={city} onSelect={setCity} />
         </div>

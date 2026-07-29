@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import axios, { AxiosError } from "axios";
 import { axiosInstance } from "@/lib/axiosInstance";
+import { toast } from "sonner";
 
 const CATEGORIES = [
   "Restaurants & Cafes",
@@ -17,11 +18,12 @@ const CATEGORIES = [
   "Fitness & Gyms",
   "Event Planners",
   "Legal & Finance",
+  "Electronics",
+  "Others"
 ];
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-
 type FormState = {
+  ownerName: string;
   title: string;
   category: string;
   city: string;
@@ -36,6 +38,7 @@ type FormState = {
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
 const INITIAL_STATE: FormState = {
+  ownerName: "",
   title: "",
   category: "",
   city: "",
@@ -92,6 +95,10 @@ export default function ListBusinessPage() {
   function validate(): boolean {
     const next: FormErrors = {};
 
+    if (!form.ownerName.trim()) next.ownerName = "Owner / Lister name is required.";
+    else if (form.ownerName.trim().length < 2)
+      next.ownerName = "Owner name must be at least 2 characters.";
+
     if (!form.title.trim()) next.title = "Business name is required.";
     else if (form.title.trim().length < 3)
       next.title = "Business name must be at least 3 characters.";
@@ -143,6 +150,7 @@ export default function ListBusinessPage() {
 
     try {
       const formData = new FormData();
+      formData.append("ownerName", form.ownerName.trim());
       formData.append("title", form.title.trim());
       formData.append("category", form.category);
       formData.append("city", form.city.trim());
@@ -155,9 +163,9 @@ export default function ListBusinessPage() {
       if (image1) formData.append("images", image1);
       if (image2) formData.append("images", image2);
 
-      // Axios automatically sets 'multipart/form-data' header with correct boundary when passing FormData
       const response = await axiosInstance.post("/api/business/new", formData);
-      console.log(response)
+      toast.success("Business Listed sucessfully")
+      
       setStatus({
         type: "success",
         message:
@@ -212,6 +220,17 @@ export default function ListBusinessPage() {
         )}
 
         <form onSubmit={handleSubmit} noValidate className="mt-10 space-y-6">
+          {/* Owner / Lister Name Added at First */}
+          <Field label="Owner / Lister Name" error={errors.ownerName}>
+            <input
+              name="ownerName"
+              value={form.ownerName}
+              onChange={handleChange}
+              placeholder="e.g. Rahul Sharma"
+              className={inputClass(!!errors.ownerName)}
+            />
+          </Field>
+
           <Field label="Business Name" error={errors.title}>
             <input
               name="title"
@@ -409,17 +428,54 @@ function ImageInput({
   file: File | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
+  const [preview, setPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!file) {
+      setPreview(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
+
+    // Free memory when component unmounts or file changes
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [file]);
+
   return (
-    <label className="relative flex flex-col items-center justify-center gap-2 bg-mist/40 border border-dashed border-ink/20 rounded-xl px-4 py-6 cursor-pointer hover:border-tez-orange transition-colors text-center">
+    <label className="relative flex flex-col items-center justify-center gap-2 bg-mist/40 border border-dashed border-ink/20 rounded-xl overflow-hidden cursor-pointer hover:border-tez-orange transition-colors text-center group min-h-[140px]">
       <input
         type="file"
         accept="image/jpeg,image/png,image/webp"
         onChange={onChange}
-        className="absolute inset-0 opacity-0 cursor-pointer"
+        className="absolute inset-0 opacity-0 cursor-pointer z-10"
       />
-      <span className="text-xs font-mono text-ink/50">
-        {file ? file.name : `Upload ${label}`}
-      </span>
+
+      {preview ? (
+        <div className="relative w-full h-36">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={preview}
+            alt={label}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2">
+            <span className="text-xs font-medium text-paper bg-ink/80 px-3 py-1 rounded-full">
+              Change Image
+            </span>
+            <span className="text-[10px] text-paper/80 truncate max-w-[90%] mt-1">
+              {file?.name}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div className="p-6 flex flex-col items-center justify-center">
+          <span className="text-xs font-mono text-ink/50">
+            Upload {label}
+          </span>
+        </div>
+      )}
     </label>
   );
 }

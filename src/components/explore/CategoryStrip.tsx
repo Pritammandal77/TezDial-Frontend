@@ -15,6 +15,8 @@ export const CATEGORIES = [
   "Fitness & Gyms",
   "Event Planners",
   "Legal & Finance",
+  "Electronics",
+  "Others",
 ];
 
 export default function CategoryStrip({
@@ -75,7 +77,7 @@ export default function CategoryStrip({
             key={c}
             label={c}
             image={`https://picsum.photos/seed/tezdial-cat-${encodeURIComponent(
-              c
+              c,
             )}/200/200`}
             active={active === c}
             onClick={() => onSelect(active === c ? "" : c)}
@@ -124,7 +126,16 @@ function FilterBox({
 
 function ChevronLeftIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="m15 18-6-6 6-6" />
     </svg>
   );
@@ -132,7 +143,16 @@ function ChevronLeftIcon() {
 
 function ChevronRightIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="m9 18 6-6-6-6" />
     </svg>
   );

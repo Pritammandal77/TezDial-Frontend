@@ -1,8 +1,8 @@
+import Link from "next/link";
+
 const QUICK_LINKS = [
   { label: "Home", href: "#hero" },
-  { label: "Categories", href: "#categories" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Featured Businesses", href: "#businesses" },
   { label: "For Business", href: "#for-business" },
 ];
 
@@ -36,11 +36,26 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm text-paper/70">
             {QUICK_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="hover:text-tez-orange transition-colors">
+                <a
+                  href={l.href}
+                  className="hover:text-tez-orange transition-colors"
+                >
                   {l.label}
                 </a>
               </li>
             ))}
+            <Link
+              href="/business/new"
+              className="hover:text-tez-orange  transition-colors text-sm text-paper/70"
+            >
+              List your business
+            </Link>
+            <Link
+              href="/business/all"
+              className="hover:text-tez-orange transition-colors  text-sm text-paper/70"
+            >
+              Explore
+            </Link>
           </ul>
         </div>
 
@@ -51,7 +66,10 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm text-paper/70">
             {POPULAR_CATEGORIES.map((c) => (
               <li key={c}>
-                <a href="#categories" className="hover:text-tez-orange transition-colors">
+                <a
+                  href="#categories"
+                  className="hover:text-tez-orange transition-colors"
+                >
                   {c}
                 </a>
               </li>
@@ -66,15 +84,21 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm text-paper/70 font-mono">
             <li>Chandrapur, Maharashtra</li>
             <li>
-              <a href="tel:+919876543210" className="hover:text-tez-orange transition-colors">
-                +91 98765 43210
+              <a
+                href="tel:+919876543210"
+                className="hover:text-tez-orange transition-colors"
+              >
+                +91 98812 28004
               </a>
             </li>
-            <li>
-              <a href="mailto:hello@tezdial.in" className="hover:text-tez-orange transition-colors">
+            {/* <li>
+              <a
+                href="mailto:hello@tezdial.in"
+                className="hover:text-tez-orange transition-colors"
+              >
                 hello@tezdial.in
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

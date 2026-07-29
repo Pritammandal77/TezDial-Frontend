@@ -15,7 +15,7 @@ export default function ImageGallery({
 
   if (validImages.length === 0) {
     return (
-      <div className="aspect-[4/3] rounded-2xl bg-mist/50 flex flex-col items-center justify-center text-ink/30 font-mono text-sm gap-2">
+      <div className="aspect-4/3 rounded-2xl bg-mist/50 flex flex-col items-center justify-center text-ink/30 font-mono text-sm gap-2">
         <ImageOff className="w-8 h-8 opacity-40" />
         <span>No image available</span>
       </div>
@@ -33,7 +33,7 @@ export default function ImageGallery({
   return (
     <div>
       {/* Main Image Container */}
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-mist/40 group">
+      <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-mist/40 group">
         <img
           src={validImages[active]}
           alt={alt}
