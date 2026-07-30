@@ -2,13 +2,6 @@ import { axiosInstance } from "@/lib/axiosInstance"
 import { toast } from "sonner"
 
 
-
-export const createNewBusiness = async (data: any) => {
-    const res = await axiosInstance.post("/api/business/new", data)
-    return res.data
-}
-
-
 export const fetchBusinessById = async (id: string) => {
     try {
         const res = await axiosInstance.get(`/api/business/${id}`)
